@@ -1,5 +1,6 @@
 from tkinter import *
 import sqlite3
+import os
 
 #banco de dados
 def cadastrar_cliente():
@@ -69,7 +70,7 @@ def j1():
 
 def j2():
     
-    headline.destroy()
+    l_logo.destroy()
     botãoLogin.destroy()
     botãoCadastro.destroy()
 
@@ -128,6 +129,8 @@ def j2():
     janela.config(bd=220)
     janela.mainloop()
 
+Autikids = os.path.dirname(__file__)
+
 janela = Tk()
 janela.title('Autikids')
 janela.iconbitmap('icon.ico')
@@ -135,9 +138,13 @@ janela.wm_minsize(width=920, height=800)
 janela.wm_maxsize(width=920, height=800)
 janela.config(bg='orange')
 
-headline = Label(janela, text='Autikids')
-headline.configure(font=('Poppins 64 bold'), bg='orange', fg='white')
-headline.grid(padx = 25, row=0,sticky='we',  column = 0, columnspan = 1)
+imgLogo = PhotoImage(file=Autikids+'\\logo_gif.gif')
+l_logo = Label(janela, image=imgLogo, bg = 'orange')
+l_logo.grid(padx = 25, pady = 15, row=0,sticky='we',  column = 0, columnspan = 1)
+
+# headline = Label(janela, text='Autikids')
+# headline.configure(font=('Poppins 64 bold'), bg='orange', fg='white')
+# headline.grid(padx = 25, row=0,sticky='we',  column = 0, columnspan = 1)
 
 imgLogin = PhotoImage(file='login_botão.png')
 botãoLogin = Button(janela, image=imgLogin, bg = 'orange', border=0, activebackground='orange')
