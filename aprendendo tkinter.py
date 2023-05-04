@@ -1,8 +1,8 @@
 from tkinter import *
 import sqlite3
-import os
 
 #banco de dados
+
 def cadastrar_cliente():
     conexao = sqlite3.connect('usuários_e_senhas')
     c = conexao.cursor()
@@ -31,56 +31,44 @@ def cadastrar_cliente():
     entrySenha.delete(0,"end")
 
 def j1():
-    
-    labelCadastro.destroy()
-    labelNome.destroy()
-    labelSobrenome.destroy()
-    labelEmail.destroy()
-    labelTelefone.destroy()
-    labelSenha.destroy()
-    
-    entryNome.destroy()
-    entrySobrenome.destroy()
-    entryEmail.destroy()
-    entryTelefone.destroy()
-    entrySenha.destroy()
-    
-    botãoVoltarMenu.destroy()
-    botãoConfirmarCad.destroy()
-    
-    janela.title('Autikids - Cadastro de Usuário')
-    janela.config(bg='orange')
-    #ícone
-    janela.iconbitmap('icon.ico')
-    #não diminuir nem aumentar
-    janela.wm_minsize(width=920, height=745)
-    janela.wm_maxsize(width=920, height=745)
-    
-    headline = Label(janela, text='Autikids')
-    headline.configure(font=('Poppins 64 bold'), bg='orange', fg='white')
-    headline.grid(padx = 25, row=0,sticky='we',  column = 0, columnspan = 1)
 
-    botãoLogin = Button(janela, text='Fazer login', border=0, activebackground='SteelBlue1', font=('Poppins 12 bold'))
-    botãoLogin.grid(padx = 25, row=1, sticky='we', column = 0, columnspan = 2)
-
-    botãoCadastro = Button(janela, text='Cadastrar usuário', border=0, activebackground='SteelBlue1', command = j2, font=('Poppins 12 bold'))
-    botãoCadastro.grid(padx = 25, pady = 3, row=2, sticky='we', column = 0, columnspan = 2)
-    janela.config(bd=250)
+    l_logo.destroy()
+    botãoLogin.destroy()
+    botãoCadastro.destroy()
+    
+    labelLogTitle = Label(janela, text='Login de Usuário')
+    labelLogTitle.configure(font=('Poppins', 25, 'bold'), bg='orange', fg='white')
+    labelLogTitle.grid(padx = 5, row = 0, columnspan=2, sticky=E)
+    
+    #LABELS
+    
+    labelInputLogin = Label(janela, text='Email:', background='orange', font=('Poppins 12 bold'))
+    labelInputLogin.grid(padx = 5, row = 1, column = 0, sticky=E)
+    
+    labelInputSenha = Label(janela, text='Senha:', background='orange', font=('Poppins 12 bold'))
+    labelInputSenha.grid(padx = 5, row = 2, column = 0, sticky=E)
+    
+    ##ENTRYS
+    
+    entryInputLogin = Entry(janela, border=2, font=('Poppins 12'))
+    entryInputLogin.grid(pady = 6, row = 1, column = 1, sticky=W)
+    
+    entrySenha = Entry(janela, text='Senha:', show='*', border=2, font=('Poppins 12'))
+    entrySenha.grid(pady = 6, row = 2, column = 1, sticky=W)
+    
+    ##BOTÃO
+    
+    botãoConfirmarLog = Button(janela, text='Fazer login', activebackground='yellow', font=('Poppins 12 bold'))
+    botãoConfirmarLog.grid(pady = 5, row = 3, columnspan = 2, sticky='we')
+    
+    janela.config(bd=310)
     janela.mainloop()
-
+    
 def j2():
     
     l_logo.destroy()
     botãoLogin.destroy()
     botãoCadastro.destroy()
-
-    janela.title('Autikids - Cadastro de Usuário')
-    janela.config(bg='orange')
-    #ícone
-    janela.iconbitmap('icon.ico')
-    #não diminuir nem aumentar
-    janela.wm_minsize(width=920, height=745)
-    janela.wm_maxsize(width=920, height=745)
     
     labelCadastro = Label(janela, text='Cadastro de Usuário')
     labelCadastro.configure(font=('Poppins', 20, 'bold'), bg='orange', fg='white')
@@ -120,7 +108,7 @@ def j2():
     
     ##BOTÕES
     
-    botãoVoltarMenu = Button(janela, text='Voltar', width = 10, activebackground='yellow', font=('Poppins 12 bold'), command=j1)
+    botãoVoltarMenu = Button(janela, text='Voltar', width = 10, activebackground='yellow', font=('Poppins 12 bold'))
     botãoVoltarMenu.grid(pady = 5, row = 6, sticky=E)
     
     botãoConfirmarCad = Button(janela, text='Criar conta', width = 15, activebackground='yellow', command=cadastrar_cliente, font=('Poppins 12 bold'))
@@ -129,8 +117,6 @@ def j2():
     janela.config(bd=220)
     janela.mainloop()
 
-Autikids = os.path.dirname(__file__)
-
 janela = Tk()
 janela.title('Autikids')
 janela.iconbitmap('icon.ico')
@@ -138,20 +124,17 @@ janela.wm_minsize(width=920, height=800)
 janela.wm_maxsize(width=920, height=800)
 janela.config(bg='orange')
 
-imgLogo = PhotoImage(file=Autikids+'\\logo_gif.gif')
+imgLogo = PhotoImage(file='logo_gif.gif')
 l_logo = Label(janela, image=imgLogo, bg = 'orange')
 l_logo.grid(padx = 25, pady = 15, row=0,sticky='we',  column = 0, columnspan = 1)
 
-# headline = Label(janela, text='Autikids')
-# headline.configure(font=('Poppins 64 bold'), bg='orange', fg='white')
-# headline.grid(padx = 25, row=0,sticky='we',  column = 0, columnspan = 1)
-
 imgLogin = PhotoImage(file='login_botão.png')
-botãoLogin = Button(janela, image=imgLogin, bg = 'orange', border=0, activebackground='orange')
+botãoLogin = Button(janela, image=imgLogin, command = j1,bg = 'orange', border=0, activebackground='orange')
 botãoLogin.grid(padx = 25, row=1, sticky='we', column = 0, columnspan = 2)
 
 imgCadastro = PhotoImage(file='criar_botão.png')
 botãoCadastro = Button(janela, image=imgCadastro, command = j2, bg = 'orange', border=0, activebackground='orange')
 botãoCadastro.grid(padx = 25, pady = 3, row=2, sticky='we', column = 0, columnspan = 2)
+
 janela.config(bd=250)
 janela.mainloop()
