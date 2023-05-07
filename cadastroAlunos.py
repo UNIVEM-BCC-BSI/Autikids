@@ -4,24 +4,9 @@ import os
 
 pastaApp=os.path.dirname(__file__)
 
-# conexao = sqlite3.connect('banco_alunos.db')
-#
-# cursor=conexao.cursor()
-# cursor.execute(''' CREATE TABLE Alunos (
-#          Nome text,
-#          Sobrenome text,
-#          Telefone text,
-#          datadenascimento text,
-#          Endereço text,
-#          cep text,
-#          bairro text
-#          )
-# ''')
-# conexao.commit()
-# conexao.close()
 
 def cadastrar_aluno():
-    conexao = sqlite3.connect('banco_alunos.db')
+    conexao = sqlite3.connect('banco_alunos2.db')
     cursor=conexao.cursor()
     cursor.execute("INSERT INTO alunos VALUES(:nome,:sobrenome,:telefone,:datadenascimento,:endereco,:cep,:bairro)",
                    {
@@ -29,7 +14,7 @@ def cadastrar_aluno():
                        'sobrenome':entry_sobrenome.get(),
                        'telefone':entry_telefone.get(),
                        'datadenascimento':entry_datadenascimento.get(),
-                       'endereco':entry_telefone.get(),
+                       'endereco':entry_endereco.get(),
                        'cep':entry_cep.get(),
                        'bairro':entry_bairro.get(),
 
