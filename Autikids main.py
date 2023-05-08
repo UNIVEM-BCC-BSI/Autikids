@@ -1,9 +1,62 @@
 from tkinter import *
 from tkinter import messagebox
+from customtkinter import *
+import playsound as ps
 import sqlite3
 
-#banco de dados
+def logado():
+    
+    entryInputEmail.destroy()
+    entryInputSenha.destroy()
+    botãoVoltarMenu.destroy()
+    botãoConfirmarLog.destroy()
+    labelInputLogin.destroy()
+    labelInputSenha.destroy()
+    labelLogTitle.destroy()
+    
+    def semcomando():
+        print("")
 
+    def cadastrarAluno():
+        exec(open("cadastroAlunos.py").read())
+
+    def interacao():
+        exec(open("Autikids Tela de Interações..py").read())
+
+    imgLogo=PhotoImage("logo_autikids.png")
+    logo=Label(janela,image=imgLogo,bg='orange')
+    logo.place(x=500,y=90)
+    janela.config(bg='orange')
+
+    barrademenus=Menu(janela)
+    menuAlunos=Menu(barrademenus,tearoff=0)
+    menuAlunos.add_command(label="Novo Cadastro",command=cadastrarAluno)
+    menuAlunos.add_command(label="Pesquisar",command=semcomando)
+    menuAlunos.add_separator()
+    menuAlunos.add_command(label="Fechar",command=janela.quit)
+    barrademenus.add_cascade(label="Alunos",menu=menuAlunos)
+
+    menuconfiguracao=Menu(barrademenus,tearoff=0)
+    menuconfiguracao.add_command(label="Login",command=semcomando)
+    menuconfiguracao.add_command(label="Ajustes",command=semcomando)
+    barrademenus.add_cascade(label='Configurações',menu=menuconfiguracao)
+
+    janela.config(menu=barrademenus)
+
+    imgAlimentacao = PhotoImage(file='botão_alimentação.gif')
+    b_Alimentacao = Button(janela, image=imgAlimentacao, bg='orange', border=0, activebackground='orange', command=semcomando)
+    b_Alimentacao.place(x=800,y=400)
+
+    imgInteracao = PhotoImage(file='botão_interações.gif')
+    b_Interacao = Button(janela, image=imgInteracao, bg='orange', border=0, activebackground='orange', command=interacao)
+    b_Interacao.place(x=300,y=400)
+
+    janela.config(menu=barrademenus)
+
+
+    janela.mainloop()
+
+#banco de dados
 def cadastrar_cliente():
     
     global conexao
@@ -14,6 +67,8 @@ def cadastrar_cliente():
     global emailUp
     global telefoneUp
     global senhaUp
+    
+    ps.playsound('C:/Users/samub/OneDrive/Área de Trabalho/fac/Autikids/menuclick.wav')
     
     conexao = sqlite3.connect('funcionários.db')
     c = conexao.cursor()
@@ -53,7 +108,7 @@ def cadastrar_cliente():
                         'senha': entrySenha.get().strip()
                     })
 
-            # Commit as mudanças:
+            # Commit das mudanças:
             conexao.commit()
 
             # Fechar o banco de dados:
@@ -74,6 +129,7 @@ def cadastrar_cliente():
 
 def logar():
     
+    ps.playsound('C:/Users/samub/OneDrive/Área de Trabalho/fac/Autikids/menuclick.wav')
     inputEmail = entryInputEmail.get().strip()
     inputSenha = entryInputSenha.get().strip()
     
@@ -96,9 +152,11 @@ def logar():
         
         else:
             messagebox.showinfo(title='Autikids Login', message=f'Login feito com sucesso. Bem vindo(a), {res[0]}.')
-
-def j1_to_j0():
+            logado()
+            
+def j1_to_j0(): 
     
+    global canvasHud
     global l_logo
     global botãoLogin
     global botãoCadastro
@@ -113,26 +171,36 @@ def j1_to_j0():
     botãoVoltarMenu.destroy()
     botãoConfirmarLog.destroy()
 
-    imgLogo = PhotoImage(file='logo_gif.gif')
-    l_logo = Label(janela, image=imgLogo, bg = 'orange')
-    l_logo.grid(padx = 25, pady = 15, row=0,sticky='we',  column = 0, columnspan = 1)
+    ps.playsound('C:/Users/samub/OneDrive/Área de Trabalho/fac/Autikids/menuclick.wav')
+    
+    imgCanvas = PhotoImage(file='img_frame1.png')
+    canvasHud = Canvas(janela, width=465, height=291, bg='orange', highlightthickness=0)
+    canvasHud.create_image(0, 0, image=imgCanvas, anchor='nw')
+    canvasHud.grid(columnspan=1, rowspan=3)
+    
+    imgLogo = PhotoImage(file='logo.png')
+    l_logo = Label(janela, image=imgLogo, bg = 'white')
+    l_logo.grid(padx = 21, row=0, sticky='wes',  column = 0, columnspan = 1)
 
     imgLogin = PhotoImage(file='login_botão.png')
-    botãoLogin = Button(janela, image=imgLogin, command = j1,bg = 'orange', border=0, activebackground='orange')
-    botãoLogin.grid(padx = 25, row=1, sticky='we', column = 0, columnspan = 2)
+    botãoLogin = Button(janela, image=imgLogin, command = j1,bg = 'white', border=0, activebackground='white', cursor='hand2')
+    botãoLogin.grid(padx = 21, row=1, sticky='wes', column = 0, columnspan = 2)
 
     imgCadastro = PhotoImage(file='criar_botão.png')
-    botãoCadastro = Button(janela, image=imgCadastro, command = j2, bg = 'orange', border=0, activebackground='orange')
-    botãoCadastro.grid(padx = 25, pady = 3, row=2, sticky='we', column = 0, columnspan = 2)
+    botãoCadastro = Button(janela, image=imgCadastro, command = j2, bg = 'white', border=0, activebackground='white', cursor='hand2')
+    botãoCadastro.grid(padx = 21, pady = 3, row=2, sticky='wen', column = 0, columnspan = 2)
 
-    janela.config(bd=250)
+    janela.config(bd=230)
     janela.mainloop()
 
 def j2_to_j0():
     
+    global canvasHud
     global l_logo
     global botãoLogin
     global botãoCadastro
+    
+    ps.playsound('C:/Users/samub/OneDrive/Área de Trabalho/fac/Autikids/menuclick.wav')
     
     labelCadastro.destroy()
     labelNome.destroy()
@@ -150,23 +218,29 @@ def j2_to_j0():
     botãoVoltarMenu.destroy()
     botãoConfirmarCad.destroy()
 
-    imgLogo = PhotoImage(file='logo_gif.gif')
-    l_logo = Label(janela, image=imgLogo, bg = 'orange')
-    l_logo.grid(padx = 25, pady = 15, row=0,sticky='we',  column = 0, columnspan = 1)
+    imgCanvas = PhotoImage(file='img_frame1.png')
+    canvasHud = Canvas(janela, width=465, height=291, bg='orange', highlightthickness=0)
+    canvasHud.create_image(0, 0, image=imgCanvas, anchor='nw')
+    canvasHud.grid(columnspan=1, rowspan=3)
+
+    imgLogo = PhotoImage(file='logo.png')
+    l_logo = Label(janela, image=imgLogo, bg = 'white')
+    l_logo.grid(padx = 21, row=0, sticky='wes',  column = 0, columnspan = 1)
 
     imgLogin = PhotoImage(file='login_botão.png')
-    botãoLogin = Button(janela, image=imgLogin, command = j1,bg = 'orange', border=0, activebackground='orange')
-    botãoLogin.grid(padx = 25, row=1, sticky='we', column = 0, columnspan = 2)
+    botãoLogin = Button(janela, image=imgLogin, command = j1,bg = 'white', border=0, activebackground='white', cursor='hand2')
+    botãoLogin.grid(padx = 21, row=1, sticky='wes', column = 0, columnspan = 2)
 
     imgCadastro = PhotoImage(file='criar_botão.png')
-    botãoCadastro = Button(janela, image=imgCadastro, command = j2, bg = 'orange', border=0, activebackground='orange')
-    botãoCadastro.grid(padx = 25, pady = 3, row=2, sticky='we', column = 0, columnspan = 2)
+    botãoCadastro = Button(janela, image=imgCadastro, command = j2, bg = 'white', border=0, activebackground='white', cursor='hand2')
+    botãoCadastro.grid(padx = 21, pady = 3, row=2, sticky='wen', column = 0, columnspan = 2)
 
-    janela.config(bd=250)
+    janela.config(bd=230)
     janela.mainloop()
 
 def j1():
 
+    canvasHud.destroy()
     l_logo.destroy()
     botãoLogin.destroy()
     botãoCadastro.destroy()
@@ -180,6 +254,8 @@ def j1():
     
     global botãoVoltarMenu
     global botãoConfirmarLog
+    
+    ps.playsound('C:/Users/samub/OneDrive/Área de Trabalho/fac/Autikids/menuclick.wav')
     
     labelLogTitle = Label(janela, text='Login de Funcionário')
     labelLogTitle.configure(font=('Poppins', 25, 'bold'), bg='orange', fg='white')
@@ -203,17 +279,18 @@ def j1():
     
     ##BOTÃO
     
-    botãoVoltarMenu = Button(janela, text='Voltar', activebackground='yellow', font=('Poppins 12 bold'), command=j1_to_j0)
+    botãoVoltarMenu = Button(janela, text='Voltar', activebackground='#fdd42a', font=('Poppins 12 bold'), command=j1_to_j0, cursor='hand2')
     botãoVoltarMenu.grid(pady = 15, row = 5, column=0, sticky='we')
     
-    botãoConfirmarLog = Button(janela, text='Fazer login', activebackground='yellow', font=('Poppins 12 bold'), command=logar)
+    botãoConfirmarLog = Button(janela, text='Fazer login', activebackground='#fdd42a', font=('Poppins 12 bold'), command=logar, cursor='hand2')
     botãoConfirmarLog.grid(pady = 15, row = 5, column=1, sticky='we')
     
-    janela.config(bd=250)
+    janela.config(bd=230)
     janela.mainloop()
     
 def j2():
     
+    canvasHud.destroy()
     l_logo.destroy()
     botãoLogin.destroy()
     botãoCadastro.destroy()
@@ -233,6 +310,8 @@ def j2():
     
     global botãoVoltarMenu
     global botãoConfirmarCad
+    
+    ps.playsound('C:/Users/samub/OneDrive/Área de Trabalho/fac/Autikids/menuclick.wav')
     
     labelCadastro = Label(janela, text='Cadastro de Funcionário')
     labelCadastro.configure(font=('Poppins', 20, 'bold'), bg='orange', fg='white')
@@ -272,10 +351,10 @@ def j2():
     
     ##BOTÕES
     
-    botãoVoltarMenu = Button(janela, text='Voltar', width = 10, activebackground='yellow', font=('Poppins 12 bold'), command=j2_to_j0)
+    botãoVoltarMenu = Button(janela, text='Voltar', width = 10, activebackground='#fdd42a', font=('Poppins 12 bold'), command=j2_to_j0, cursor='hand2')
     botãoVoltarMenu.grid(pady = 5, row = 6, sticky=E)
     
-    botãoConfirmarCad = Button(janela, text='Criar conta', width = 15, activebackground='yellow', command=cadastrar_cliente, font=('Poppins 12 bold'))
+    botãoConfirmarCad = Button(janela, text='Criar conta', width = 15, activebackground='#fdd42a', command=cadastrar_cliente, font=('Poppins 12 bold'), cursor='hand2')
     botãoConfirmarCad.grid(pady = 5, row = 6, column = 1, sticky='nswe')
     
     janela.config(bd=220)
@@ -284,21 +363,27 @@ def j2():
 janela = Tk()
 janela.title('Autikids')
 janela.iconbitmap('icon.ico')
+
 janela.wm_minsize(width=920, height=800)
 janela.wm_maxsize(width=920, height=800)
 janela.config(bg='orange')
 
-imgLogo = PhotoImage(file='logo_gif.gif')
-l_logo = Label(janela, image=imgLogo, bg = 'orange')
-l_logo.grid(padx = 25, pady = 15, row=0,sticky='we',  column = 0, columnspan = 1)
+imgCanvas = PhotoImage(file='img_frame1.png')
+canvasHud = Canvas(janela, width=465, height=291, bg='orange', highlightthickness=0)
+canvasHud.create_image(0, 0, image=imgCanvas, anchor='nw')
+canvasHud.grid(columnspan=1, rowspan=3)
+
+imgLogo = PhotoImage(file='logo.png')
+l_logo = Label(janela, image=imgLogo, bg = 'white')
+l_logo.grid(padx = 21, row=0, sticky='wes',  column = 0, columnspan = 1)
 
 imgLogin = PhotoImage(file='login_botão.png')
-botãoLogin = Button(janela, image=imgLogin, command = j1,bg = 'orange', border=0, activebackground='orange')
-botãoLogin.grid(padx = 25, row=1, sticky='we', column = 0, columnspan = 2)
+botãoLogin = Button(janela, image=imgLogin, command = j1,bg = 'white', border=0, activebackground='white', cursor='hand2')
+botãoLogin.grid(padx = 21, row=1, sticky='wes', column = 0, columnspan = 2)
 
 imgCadastro = PhotoImage(file='criar_botão.png')
-botãoCadastro = Button(janela, image=imgCadastro, command = j2, bg = 'orange', border=0, activebackground='orange')
-botãoCadastro.grid(padx = 25, pady = 3, row=2, sticky='we', column = 0, columnspan = 2)
+botãoCadastro = Button(janela, image=imgCadastro, command = j2, bg = 'white', border=0, activebackground='white', cursor='hand2')
+botãoCadastro.grid(padx = 21, pady = 3, row=2, sticky='wen', column = 0, columnspan = 2)
 
-janela.config(bd=250)
+janela.config(bd=230)
 janela.mainloop()
