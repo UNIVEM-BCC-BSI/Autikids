@@ -74,7 +74,13 @@ label_cep.grid(row=6, column=0, padx=10, pady=10, sticky='e')
 label_bairro= tkinter.Label(janela, text='Bairro: ',bg='orange',fg="black",border=2, font=('Poppins 12 bold'))
 label_bairro.grid(row=7, column=0, padx=10, pady=10, sticky='e')
 
-
+global entry_nome
+global entry_sobrenome
+global entry_telefone
+global entry_datadenascimento
+global entry_endereco
+global entry_cep
+global entry_bairro
 # Entrys:
 
 entry_nome= tkinter.Entry(janela, width=30, border=2, font=('Poppins 12'))

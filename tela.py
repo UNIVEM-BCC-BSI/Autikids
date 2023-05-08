@@ -11,7 +11,7 @@ def semcomando():
     print("")
 
 def cadastrarAluno():
-    run("c:\Autikids\cadastroAlunos.exe")
+    exec(open("cadastroAlunos.py").read())
 
 def interacao():
     exec(open("Autikids Tela de Interações..py").read())
