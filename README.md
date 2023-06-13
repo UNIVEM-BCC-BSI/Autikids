@@ -7,3 +7,9 @@ Aplicação de comunicação alternativa de alta tecnologia voltada a melhorar a
 * Júlia Persson Mascari [(Linkedin)](https://www.linkedin.com/in/juliapmascari);
 * Lucas Girotto;
 * Samuel Pereira Barreto [(Linkedin)](https://www.linkedin.com/in/sampbrt/).
+
+## **Vídeo de apresentação do Projeto**
+* https://www.youtube.com/watch?v=gwaOvcCb9-w&t
+
+## **Vídeo Demonstrativo**
+* https://www.youtube.com/watch?v=HsBhddAzQME
