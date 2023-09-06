@@ -6,7 +6,7 @@ Aplicação de comunicação alternativa de alta tecnologia voltada a melhorar a
 * Caio Issao de Barros Fujisawa;
 * Júlia Persson Mascari [(Linkedin)](https://www.linkedin.com/in/juliapmascari);
 * Lucas Girotto;
-* Samuel Pereira Barreto [(Linkedin)](https://www.linkedin.com/in/samubarreto/).
+* Samuel Pereira Barreto [(Links)](https://linktr.ee/sampereirabrt).
 
 ## **Vídeo de apresentação do Projeto**
 * https://www.youtube.com/watch?v=gwaOvcCb9-w&t
