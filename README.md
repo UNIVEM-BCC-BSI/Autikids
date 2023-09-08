@@ -1,4 +1,4 @@
-![image](https://github.com/UNIVEM-BCC-BSI/Autikids/assets/70921394/79e771c5-5c83-4254-8893-3ba21ece55e6)# **Autikids**
+# **Autikids**
 Aplicação de comunicação alternativa de alta tecnologia voltada a melhorar a comunicação da criança portadora do espectro autista e sua inserção na sociedade.
 
 ## **Membros**
